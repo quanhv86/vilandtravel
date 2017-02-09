@@ -1,0 +1,25 @@
+﻿@model DestinationNavigationModel
+@using Nop.Web.Models.Catalog;
+@if (Model.Destinations.Count > 0)
+{
+    <div class="block block-destination-navigation">
+        <div class="title">
+            <strong>@T("Destinations")</strong>
+        </div>
+        <div class="listbox">
+            <ul class="list">
+                @foreach (var destination in Model.Destinations)
+                {
+                    <li class="@(destination.IsActive ? "active" : "inactive")"><a href="@Url.RouteUrl("Destination", new { SeName = destination.SeName })">@destination.Name</a>
+                    </li>
+                }
+            </ul>
+            @if (Model.TotalDestinations > Model.Destinations.Count)
+            {
+                <div class="view-all">
+                    <a href="@Url.RouteUrl("DestinationList")">@T("Destinations.ViewAll")</a>
+                </div>
+            }
+        </div>
+    </div>
+}
